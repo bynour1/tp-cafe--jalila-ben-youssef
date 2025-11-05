@@ -1,0 +1,14 @@
+package com.example.tp_cafe_jalila_ben_youssef.mappers;
+
+import com.example.tp_cafe_jalila_ben_youssef.DTO.AdresseResponse;
+import com.example.tp_cafe_jalila_ben_youssef.Entite.Adresse;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface IAdresseMap {
+Adresse toEntity (Adresse adresseRequest);
+AdresseResponse toDto (Adresse adresse);
+
+
+
+}

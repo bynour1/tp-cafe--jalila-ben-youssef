@@ -4,24 +4,23 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class AdresseSwagger {
+public class ArticleSwagger {
+
     @Bean
-    public GroupedOpenApi adresseApi() {
+    public GroupedOpenApi ArticleApi() {
         return GroupedOpenApi.builder()
-                .group("Adresse")
-                .pathsToMatch("/api/adresse/**")
+                .group("Article")
+                .pathsToMatch("/api/Article/**")
                 .build();
     }
-
     @Bean
-    public OpenAPI adresseOpenAPI() {
+    public OpenAPI ArticleOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Adresse API Documentation")
-                        .description("Documentation des endpoints liés à la gestion des adresses 🏠")
+                        .title("Article API Documentation")
+                        .description("Documentation des endpoints liés à la gestion des Articles 🏠")
                         .version("1.0.0"));
     }
 }
+

@@ -4,24 +4,21 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class AdresseSwagger {
+public class DetailCommandeSagger {
     @Bean
-    public GroupedOpenApi adresseApi() {
+    public GroupedOpenApi DetailCommandeApi() {
         return GroupedOpenApi.builder()
-                .group("Adresse")
-                .pathsToMatch("/api/adresse/**")
+                .group("DetailCommande")
+                .pathsToMatch("/api/DetailCommande/**")
                 .build();
     }
-
     @Bean
-    public OpenAPI adresseOpenAPI() {
+    public OpenAPI DetailCommandeOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Adresse API Documentation")
-                        .description("Documentation des endpoints liés à la gestion des adresses 🏠")
+                        .title("DetailCommande API Documentation")
+                        .description("Documentation des endpoints liés à la gestion des DetailCommandes 🏠")
                         .version("1.0.0"));
     }
 }

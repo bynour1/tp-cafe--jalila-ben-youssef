@@ -1,10 +1,11 @@
 package com.example.tp_cafe_jalila_ben_youssef.SwaggerConfig;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
+
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class CarteFideliteSwagger {
     @Bean
     public GroupedOpenApi CarteFideliteApi() {
@@ -13,12 +14,5 @@ public class CarteFideliteSwagger {
                 .pathsToMatch("/api/CarteFidelite/**")
                 .build();
     }
-    @Bean
-    public OpenAPI CarteFideliteOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("CarteFidelite API Documentation")
-                        .description("Documentation des endpoints liés à la gestion des CarteFidelites 🏠")
-                        .version("1.0.0"));
-    }
+
 }

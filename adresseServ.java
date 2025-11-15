@@ -4,6 +4,7 @@ import com.example.tp_cafe_jalila_ben_youssef.DTO.AdresseResponse;
 import com.example.tp_cafe_jalila_ben_youssef.Entite.Adresse;
 import com.example.tp_cafe_jalila_ben_youssef.mappers.IAdresseMap;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import com.example.tp_cafe_jalila_ben_youssef.repositories.AdresseRepo;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class adresseServ implements IAdresseServ {
     private AdresseRepo adresseRepo;
+    @Qualifier("IAdresseMap")
     private IAdresseMap mapper;
 
     @Override
@@ -77,6 +79,20 @@ public class adresseServ implements IAdresseServ {
         return false;
     }
 
+    @Override
+    public boolean verifAdressById(long id) {
+        return false;
+    }
+
+    @Override
+    public long countingAdress() {
+        return 0;
+    }
+
+    @Override
+    public void deleteAdressById(long id) {
+
+    }
 
 
 }

@@ -2,11 +2,20 @@ package com.example.tp_cafe_jalila_ben_youssef.Entite;
 
 import com.example.tp_cafe_jalila_ben_youssef.enums.TypeArticle;
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
-import java.util.Set;
 
-@Entity(name = "Article")
+@Entity
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Article{
 
 

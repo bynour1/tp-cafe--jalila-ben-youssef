@@ -5,21 +5,19 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Client")
-@Getter//hethim teb3in lombok//enma obloigatoire
+@Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor//contructeur par default
-@AllArgsConstructor//constructeur parmettre complete
-//@RequiredArgsConstructor//pour les contructeur non nul
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Builder
-@FieldDefaults(level = AccessLevel.PRIVATE)//hata lhne2
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 
 public class Client {
@@ -27,7 +25,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idClient")
     Long idClient;
-    //@NonNull
+
     @Column(name = "nom")
     String nom;
     @Column(name = "prenom")

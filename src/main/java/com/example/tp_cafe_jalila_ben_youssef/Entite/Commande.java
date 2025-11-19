@@ -4,24 +4,19 @@ import com.example.tp_cafe_jalila_ben_youssef.enums.StatusCommande;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
-
 @Entity
 @Table(name = "Commande")
-@Getter//hethim teb3in lombok//enma obloigatoire
+@Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor//contructeur par default
-@AllArgsConstructor//constructeur parmettre complete
-//@RequiredArgsConstructor//pour les contructeur non nul
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Builder
-@FieldDefaults(level = AccessLevel.PRIVATE)//hata lhne2
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +34,10 @@ public class Commande {
     private StatusCommande statusCommande;
 
     @ManyToOne
-    private Client client;//hethi met3 client
+    private Client client;
 
 
     @OneToMany(mappedBy = "commande")
-    List<DetailCommande> detail_Commandes; // hethi met3 detaildecommande
+    List<DetailCommande> detail_Commandes;
 
 }

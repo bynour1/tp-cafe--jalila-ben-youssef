@@ -23,7 +23,6 @@ public class Adresse {
     private String ville;
     private int codePostal;
 
-    // Getters and setters
     public Long getIdAdresse() {
         return idAdresse;
     }
@@ -54,5 +53,9 @@ public class Adresse {
 
     public void setCodePostal(int codePostal) {
         this.codePostal = codePostal;
+    }
+
+    public int getCodePostale() {
+        return 0;
     }
 }

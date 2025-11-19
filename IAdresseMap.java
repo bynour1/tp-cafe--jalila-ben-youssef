@@ -7,8 +7,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface IAdresseMap {
 Adresse toEntity (Adresse adresseRequest);
-AdresseResponse toDto (Adresse adresse);
+   // Adresse toEntity2 (AdresseResponse adresseResponse);
 
+AdresseResponse toDto (Adresse adresse);
 
 //http://localhost:8088/swagger-ui/index.html#/
 }

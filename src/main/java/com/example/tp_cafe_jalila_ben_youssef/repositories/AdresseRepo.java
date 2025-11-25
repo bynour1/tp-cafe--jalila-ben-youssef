@@ -10,24 +10,17 @@ import java.util.List;
 @Repository
 public interface AdresseRepo extends JpaRepository<Adresse, Long> {
 
-    List<Adresse> findByVilleEquals(String ville);
-    List<Adresse> findByCodePostalEquals(int codePostal);
-
-    void deleteByVille(String ville);
-    List<Adresse> findByVilleAndCodePostal(String ville, int codePostal);
-    List<Adresse> findByRueContainingIgnoreCaseAndVilleIgnoreCase(String rue, String ville);
+    List<Adresse> findByVilleAndCodePostale(String ville, String codePostale);
+    List<Adresse> findByRueContainingAndVilleIgnoreCase(String rue, String ville);
     List<Adresse> findByVilleIn(List<String> villes);
-    List<Adresse> findByCodePostalBetween(int codePostal, int codePostal2);
-    List<Adresse> findByCodePostalGreaterThan(int codePostal);
-
-    List<Adresse> findByCodePostalLessThan(int codePostal);
-
-    List<Adresse> findByRueStartingWithAndVilleOrderByCodePostalAsc(String rue, String ville);
+    List<Adresse> findByCodePostaleBetween(String codePostaleDebut, String codePostaleFin);
+    List<Adresse> findByCodePostaleGreaterThan(String codePostale);
+    List<Adresse> findByCodePostaleGreaterThanEqual(String codePostale);
+    List<Adresse> findByCodePostaleLessThan(String codePostale);
+    List<Adresse> findByCodePostaleLessThanEqual(String codePostale);
+    List<Adresse> findByRueStartingWithAndVilleOrderByCodePostaleAsc(String rue, String ville);
     List<Adresse> findByRueStartingWith(String rue);
-    List<Adresse> findByVilleEndingWith(String suffix);
+    List<Adresse> findByVilleEndingWith(String terminaison);
     List<Adresse> findByRueIsNull();
     List<Adresse> findByVilleIsNotNull();
-
-
-
 }

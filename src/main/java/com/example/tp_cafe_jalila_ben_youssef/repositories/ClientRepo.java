@@ -14,70 +14,48 @@ import java.util.List;
 
 @Repository
 public interface ClientRepo extends JpaRepository<Client, Long> {
-/*
- @Query("select  c from  Client c  where  c.nom=?1 And c.prenom=?2 ")
- List <Client>  methode1JPQL(String nom , String prenom);
- @Query("select c from Client  c where  c.nom=:n And c.prenom=:p")
-List<Client> methode2JPDL (@Param("n") String nom , String prenom);
- @Query(value = "select * from Client  where  " +"First_name=?2 and Last-name=?1  " ,nativeQuery = true)
- List<Client> methode1SQL ( String p , String n);
 
-@Modifying
-@Query (value = "delete  from Client  WHERE  dateNaissance between "+":dMin and :dMax " , nativeQuery = true)
-void fasa5belDateSQl( @Param("dMin") LocalDate dMin, @Param("dMax") LocalDate dMax);
 
-List<Client> jiblibiljpql (int code);
-@Query ( "select  c from Client  c where c.adress.codePostal=?1")
-List<Client> recupByAdresse (String adresse);
-@Query (value = "Select c.* from t_client c join t_adresse a on" + " a.id_adresse=c.id_adresse where a.code_post=2020", nativeQuery = true)
-List<Client> recupBySQL(int code);
+        List<Client> findByNom(String nom);
+        List<Client> findByPrenom(String prenom);
 
-// dans la base de donne (SQL) Select c.*from t_client c join t_adresse on a.id_adresse=c.id_adresse where a.code_post=2020
+        Client findByNomAndPrenom(String nom, String prenom);
 
-*/
+        boolean existsByNom(String nom);
 
-    List<Client> findByNom(String nom);
+        long countByDateNaissanceAfter(LocalDate date);
 
-    List<Client> findByPrenom(String prenom);
+        List<Client> findByNomContainingOrPrenomContaining(String nom, String prenom);
 
-    Client findByNomAndPrenom(String nom, String prenom);
+        List<Client> findByNomContainingAndPrenomContaining(String nom, String prenom);
 
-    boolean existsByNom(String nom);
+        List<Client> findByDateNaissanceBetween(LocalDate dateDebut, LocalDate dateFin);
 
-    long countByDateNaissanceAfter(LocalDate date);
+        List<Client> findByNomStartingWithAndDateNaissanceBefore(String prefixe, LocalDate date);
 
-    List<Client> findByNomContainingOrPrenomContaining(String nom, String prenom);
+        List<Client> findByAdressVille(String ville); // changer Adress si besoin
 
-    List<Client> findByNomContainingAndPrenomContaining(String nom, String prenom);
+        List<Client> findByNomContainingOrderByPrenomAsc(String nom);
 
-    List<Client> findByDateNaissanceBetween(LocalDate dateDebut, LocalDate dateFin);
+        List<Client> findByNomContainingOrderByPrenomDesc(String nom);
 
-    List<Client> findByNomStartingWithAndDateNaissanceBefore(String prefixe, LocalDate date);
+        List<Client> findByNomStartingWith(String lettre);
 
-    List<Client> findByAdressVille(String ville);
+        List<Client> findByPrenomEndingWith(String terminaison);
 
-    List<Client> findByNomContainingOrderByPrenomAsc(String nom);
+        List<Client> findByDateNaissanceIsNull();
 
-    List<Client> findByNomContainingOrderByPrenomDesc(String nom);
+        List<Client> findByAdressIsNotNull(); // changer Adress si besoin
 
-    List<Client> findByNomStartingWith(String lettre);
+        List<Client> findByAdressVilleIn(List<String> villes); // changer Adress si besoin
 
-    List<Client> findByPrenomEndingWith(String terminaison);
+        List<Client> findByCarteFidelite_PointsAccumulesGreaterThan(int points);
 
-    List<Client> findByDateNaissanceIsNull();
+        List<Client> findByCarteFidelite_PointsAccumulesGreaterThanEqual(int points);
 
-    List<Client> findByAdressIsNotNull();
+        List<Client> findByCarteFidelite_PointsAccumulesBetween(int pointsMin, int pointsMax);
 
-    List<Client> findByAdressVilleIn(List<String> villes);
+        List<Client> findByCommandes_DetailCommandes_Article_NomArticle(String nomArticle);
 
-    List<Client> findByCartefidelitePointsAccumulésGreaterThan(int points);
-
-    List<Client> findByCartefidelitePointsAccumulésGreaterThanEqual(int points);
-
-    List<Client> findByCartefidelitePointsAccumulésBetween(int pointsMin, int pointsMax);
-
-    List<Client> findByCommandes_DetailCommandes_Article_NomArticle(String nomArticle);
-
-    List<Client> findByNomContainingAndCommandesDetailCommandesArticleTypeArticle( String nom, TypeArticle typeArticle);
-
-}
+        List<Client> findByNomContainingAndCommandesDetailCommandesArticleTypeArticle(String nom, TypeArticle typeArticle);
+    }

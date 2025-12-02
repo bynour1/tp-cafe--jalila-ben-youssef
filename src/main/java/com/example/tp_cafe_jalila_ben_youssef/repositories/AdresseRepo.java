@@ -11,20 +11,20 @@ import java.util.List;
 public interface AdresseRepo extends JpaRepository<Adresse, Long> {
 
 
-        List<Adresse> findByVilleAndCodePostale(String ville, String codePostale);
+        List<Adresse> findByVilleAndCodePostal(String ville, int codePostal);
         List<Adresse> findByRueContainingAndVilleIgnoreCase(String rue, String ville);
 
         List<Adresse> findByVilleIn(List<String> villes);
 
-        List<Adresse> findByCodePostaleBetween(String codePostaleDebut, String codePostaleFin);
+        List<Adresse> findByCodePostalBetween(int CodePostal, int CodePostal2);
 
-        List<Adresse> findByCodePostaleGreaterThan(String codePostale);
-        List<Adresse> findByCodePostaleGreaterThanEqual(String codePostale);
+        List<Adresse> findByCodePostalGreaterThan(int CodePostal);
+        List<Adresse> findByCodePostalGreaterThanEqual(int CodePostal);
 
-        List<Adresse> findByCodePostaleLessThan(String codePostale);
-        List<Adresse> findByCodePostaleLessThanEqual(String codePostale);
+        List<Adresse> findByCodePostalLessThan(int CodePostal);
+        List<Adresse> findByCodePostalLessThanEqual(int CodePostal);
 
-        List<Adresse> findByRueStartingWithAndVilleOrderByCodePostaleAsc(String rue, String ville);
+        List<Adresse> findByRueStartingWithAndVilleOrderByCodePostalAsc(String rue, String ville);
 
         List<Adresse> findByRueStartingWith(String rue);
 

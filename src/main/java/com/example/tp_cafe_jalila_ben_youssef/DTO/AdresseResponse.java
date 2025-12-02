@@ -8,9 +8,12 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class AdresseResponse {
-    private Long idAdresse;
-    private String rue;
-    private String ville;
-    private int codePostal;
+    private Long id;
 
+    private String rue;
+
+    private String ville;
+
+    private int codePostal;
 }
+

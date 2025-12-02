@@ -3,13 +3,9 @@ package com.example.tp_cafe_jalila_ben_youssef.repositories;
 import com.example.tp_cafe_jalila_ben_youssef.Entite.Client;
 import com.example.tp_cafe_jalila_ben_youssef.enums.TypeArticle;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -17,7 +13,6 @@ public interface ClientRepo extends JpaRepository<Client, Long> {
 
 
         List<Client> findByNom(String nom);
-        List<Client> findByPrenom(String prenom);
 
         Client findByNomAndPrenom(String nom, String prenom);
 
@@ -33,7 +28,7 @@ public interface ClientRepo extends JpaRepository<Client, Long> {
 
         List<Client> findByNomStartingWithAndDateNaissanceBefore(String prefixe, LocalDate date);
 
-        List<Client> findByAdressVille(String ville); // changer Adress si besoin
+        List<Client> findByAdressVille(String ville);
 
         List<Client> findByNomContainingOrderByPrenomAsc(String nom);
 
@@ -43,19 +38,13 @@ public interface ClientRepo extends JpaRepository<Client, Long> {
 
         List<Client> findByPrenomEndingWith(String terminaison);
 
-        List<Client> findByDateNaissanceIsNull();
+        List<Client> findByAdressIsNotNull();
 
-        List<Client> findByAdressIsNotNull(); // changer Adress si besoin
+        List<Client> findByAdressVilleIn(List<String> villes);
 
-        List<Client> findByAdressVilleIn(List<String> villes); // changer Adress si besoin
+        List<Client> findByCartefidelitePointsAccumulésGreaterThan(int points);
 
-        List<Client> findByCarteFidelite_PointsAccumulesGreaterThan(int points);
+        List<Client> findByCommandesDetail_CommandesArticleNomArticle(String nomArticle);
 
-        List<Client> findByCarteFidelite_PointsAccumulesGreaterThanEqual(int points);
-
-        List<Client> findByCarteFidelite_PointsAccumulesBetween(int pointsMin, int pointsMax);
-
-        List<Client> findByCommandes_DetailCommandes_Article_NomArticle(String nomArticle);
-
-        List<Client> findByNomContainingAndCommandesDetailCommandesArticleTypeArticle(String nom, TypeArticle typeArticle);
+        List<Client> findByNomContainingAndCommandesDetail_CommandesArticleTypeArticle(String nom, TypeArticle typeArticle);
     }

@@ -12,34 +12,34 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/Adressee")
+@RequestMapping("/api/Adresse")
 public class AdresseRestController {
 
-    private final IAdresseServ AdresseeServ;
+    private final IAdresseServ adresseServ;
     @GetMapping
     public List<Adresse> getAll(){
-        return AdresseeServ.selectAllAdresse();
+        return adresseServ.selectAllAdresse();
     }
 
     @PostMapping
     public AdresseResponse addAdresse(@RequestBody Adresse Adresse){
-        return AdresseeServ.addAdresse(Adresse);
+        return adresseServ.addAdresse(Adresse);
     }
 
     // CORRIGÉ : Ajout de {id} dans le mapping
     @GetMapping("selectbyId/{id}")
     public Adresse findbyId(@PathVariable("id") long id){
-        return AdresseeServ.selectAdresseByIdWithOrElse(id);
+        return adresseServ.selectAdresseByIdWithOrElse(id);
     }
 
     @GetMapping("selectById2")
     public Adresse findbyId2(@RequestParam long id){
-        return AdresseeServ.selectAdresseByIdWithOrElse(id);
+        return adresseServ.selectAdresseByIdWithOrElse(id);
     }
 
     @GetMapping("selectById3/{id}")
     public ResponseEntity<Adresse> findbyId3(@PathVariable("id") long id){
-        Adresse Adresse = AdresseeServ.selectAdresseByIdWithGet(id);
+        Adresse Adresse = adresseServ.selectAdresseByIdWithGet(id);
         if (Adresse != null) {
             return ResponseEntity.ok(Adresse);
         } else {
@@ -51,15 +51,14 @@ public class AdresseRestController {
     @PutMapping("/{id}")
     public ResponseEntity<AdresseResponse> updateAdresse(@PathVariable long id, @RequestBody Adresse AdresseDetails){
         try {
-            Adresse existingAdresse = AdresseeServ.selectAdresseByIdWithOrElse(id);
+            Adresse existingAdresse = adresseServ.selectAdresseByIdWithOrElse(id);
             if (existingAdresse != null) {
 
                 existingAdresse.setRue(AdresseDetails.getRue());
                 existingAdresse.setVille(AdresseDetails.getVille());
+                existingAdresse.setCodePostal(AdresseDetails.getCodePostal());
 
-                existingAdresse.setCodePostal(AdresseDetails.getCodePostale());
-
-                AdresseResponse updatedAdresse = AdresseeServ.addAdresse(existingAdresse);
+                AdresseResponse updatedAdresse = adresseServ.addAdresse(existingAdresse);
                 return ResponseEntity.ok(updatedAdresse);
             } else {
                 return ResponseEntity.notFound().build();
@@ -73,8 +72,8 @@ public class AdresseRestController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAdresseById(@PathVariable long id){
         try {
-            if (AdresseeServ.verifAdresseById(id)) {
-                AdresseeServ.deleteAdresseById(id);
+            if (adresseServ.verifAdresseById(id)) {
+                adresseServ.deleteAdresseById(id);
                 return ResponseEntity.ok("Adressee avec ID " + id + " supprimée avec succès");
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -89,7 +88,7 @@ public class AdresseRestController {
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteAdresse(@RequestBody Adresse Adresse){
         try {
-            AdresseeServ.deleteAdresse(Adresse);
+            adresseServ.deleteAdresse(Adresse);
             return ResponseEntity.ok("Adressee supprimée avec succès");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -100,7 +99,7 @@ public class AdresseRestController {
     @DeleteMapping("/deleteAll")
     public ResponseEntity<String> deleteAllAdressees(){
         try {
-            AdresseeServ.deleteAllAdresse();
+            adresseServ.deleteAllAdresse();
             return ResponseEntity.ok("Toutes les Adressees ont été supprimées avec succès");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -111,7 +110,7 @@ public class AdresseRestController {
     @GetMapping("/count")
     public ResponseEntity<Long> countAdressees(){
         try {
-            long count = AdresseeServ.countingAdresse();
+            long count = adresseServ.countingAdresse();
             return ResponseEntity.ok(count);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(0L);
@@ -121,7 +120,7 @@ public class AdresseRestController {
     @GetMapping("/exists/{id}")
     public ResponseEntity<Boolean> existsById(@PathVariable long id){
         try {
-            boolean exists = AdresseeServ.verifAdresseById(id);
+            boolean exists = adresseServ.verifAdresseById(id);
             return ResponseEntity.ok(exists);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
@@ -133,4 +132,3 @@ public class AdresseRestController {
         return ResponseEntity.ok("Adresse REST Controller is working properly!");
     }
 }
-

@@ -55,7 +55,4 @@ public class Adresse {
         this.codePostal = codePostal;
     }
 
-    public int getCodePostale() {
-        return 0;
-    }
 }

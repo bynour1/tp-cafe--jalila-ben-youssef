@@ -25,7 +25,7 @@ public class ClientRestController {
 
     @PostMapping
     public ResponseEntity<ClientResponse> addClient(@RequestBody Client client) {
-        ClientResponse response = clientServ.addClient(client);
+        ClientResponse response = clientServ.addClientWithResponse(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -38,7 +38,7 @@ public class ClientRestController {
     @PutMapping("/{id}")
     public ResponseEntity<ClientResponse> updateClient(@PathVariable long id, @RequestBody Client clientDetails) {
         try {
-            ClientResponse updatedClient = clientServ.updateClient(id, clientDetails);
+            ClientResponse updatedClient = clientServ.updateClientById(id, clientDetails);
             return updatedClient != null ? ResponseEntity.ok(updatedClient) : ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -47,7 +47,7 @@ public class ClientRestController {
 
     @GetMapping("/byNom/{nom}")
     public ResponseEntity<List<Client>> getClientsByNom(@PathVariable String nom) {
-        List<Client> clients = clientServ.findClientsByNom(Long.parseLong(nom));
+        List<Client> clients = clientServ.findClientsByNom(nom);
         return ResponseEntity.ok(clients);
     }
 
@@ -97,5 +97,9 @@ public class ClientRestController {
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
         return ResponseEntity.ok("Client REST Controller fonctionne correctement !");
+    }
+    @PutMapping("/affecterClientAAdresse")
+    public void affecterClientAAdresse(@RequestParam long idClient, @RequestParam long idAdresse) {
+        clientServ.affecterClientAAdresse(idClient, idAdresse);
     }
 }

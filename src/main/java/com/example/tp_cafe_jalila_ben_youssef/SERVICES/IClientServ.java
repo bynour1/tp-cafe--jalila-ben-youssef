@@ -1,24 +1,26 @@
 package com.example.tp_cafe_jalila_ben_youssef.SERVICES;
 
 import com.example.tp_cafe_jalila_ben_youssef.DTO.ClientResponse;
+import com.example.tp_cafe_jalila_ben_youssef.Entite.Article;
 import com.example.tp_cafe_jalila_ben_youssef.Entite.Client;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IClientServ {
-    Client addAdresse(Client Client);
+    ClientResponse addClientWithResponse(Client client);
 
-    Client Client(Client Client);
+    Client addAdresse(Client client);
 
-    Client addClien(Client Clien);
+    Client updateClient(Client client);
 
-    Client Clien(Client Clien);
+    Client createClient(Client client);
 
-    ClientResponse addClient(Client Client);
+    Client updateClientDetails(Client client);
 
-    List<Client> saveClient(List<Client> Client);
+    List<Client> saveClient(List<Client> clients);
 
-    Client selectClientleByIdWithGet(long id);
+    Client selectClientByIdWithGetOptional(long id);
 
     Client selectClientByIdWithGet(long id);
 
@@ -26,11 +28,9 @@ public interface IClientServ {
 
     List<Client> selectAllClient();
 
-    void deleteClient(Client Client);
+    void deleteClient(Client client);
 
     void deleteAllClient();
-
-    void deleteClienteById(long id);
 
     void deleteClientById(long id);
 
@@ -40,7 +40,7 @@ public interface IClientServ {
 
     List<Client> selectAllClients();
 
-    List<Client> findClientsByNom(long nom);
+    List<Client> findClientsByNom(String nom);
 
     IClientServ get();
 
@@ -48,7 +48,47 @@ public interface IClientServ {
 
     Client getClientByCarteFidelite(long idCarteFidelite);
 
-    ClientResponse updateClient(long id, Client clientDetails);
+    ClientResponse updateClientById(long id, Client clientDetails);
 
     Client getClientById(long id);
+
+    void affecterClientAAdresse(long idClient, long idAdresse);
+
+    ClientResponse addClient(Client client);
+
+    default String affecterAdresseAClient(String rue, long cin) {
+        return "";
+    }
+
+    default void affecterCarteAClient(long idCarte, long idClient) {
+
+    }
+
+    default void affecterCommandeAClient(long idCommande, long idClient) {
+
+    }
+
+    default void affecterCommandeAClient(LocalDate dateCommande, String nomClient, String prenomClient) {
+
+    }
+
+    default void desaffecterClientDeCommande(long idCommande) {
+
+    }
+
+    default void affecterPromotionAArticle(long idArticle, long idPromo) {
+
+    }
+
+    default void desaffecterPromotionDUnArticle(long idArticle, long idPromo) {
+
+    }
+
+    default Client ajouterClientEtCarteFidelite(Client client) {
+        return null;
+    }
+
+    default Article ajouterArticleEtPromotions(Article article) {
+        return null;
+    }
 }
